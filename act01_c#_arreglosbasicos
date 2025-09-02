@@ -1,0 +1,11 @@
+using System;
+
+namespace MyCompiler {
+    class Program {
+        public static void Main(string[] args) {
+            int[] arrint = {1, 2, 3, 4};
+            char[] arrchar = {'a', 'b', 'c', 'd'};
+            float[] arrfloat = {1.5f, 2.2f, 8.0f};
+        }
+    }
+}
