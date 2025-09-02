@@ -1,0 +1,16 @@
+// 1. Array vacío
+let ar1 = [];
+ar1.push(10);
+ar1.push(20);
+ar1.push(30);
+ar1.push(40);
+
+// 2. Array basico 
+let ar2 = [1, 2, 4, 3];
+
+// 3. Array con tamaño fijo 
+let ar3 = new Array(4).fill(0);
+ar3[0] = 7;
+ar3[1] = 8;
+ar3[2] = 9;
+ar3[3] = 10;
