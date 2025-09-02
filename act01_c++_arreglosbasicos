@@ -1,0 +1,22 @@
+#include <iostream>
+
+int main() {
+    //arreglo de tamaño fijo
+    int ar1[4];
+    ar1[0] = 10;
+    ar1[1] = 20;
+    ar1[2] = 30;
+    ar1[3] = 40;
+
+    //arreglo directamente
+    int ar2[4] = {1, 2, 3, 4};
+
+    //arreglo que cambia con la ejecucion
+
+    int* ar3 = new int[4];
+    ar3[0] = 7;
+    ar3[1] = 8;
+    ar3[2] = 9;
+    ar3[3] = 10;
+    
+}
