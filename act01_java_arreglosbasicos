@@ -1,0 +1,24 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // 1 Arreglo fijo 
+        int[] ar1 = new int[4];
+        ar1[0] = 10;
+        ar1[1] = 20;
+        ar1[2] = 30;
+        ar1[3] = 40;
+
+        // 2 Arreglo inicializado 
+        int[] ar2 = {1, 2, 4, 3};
+
+        // 3 Arreglo por tiempo de ejecución
+        ArrayList<Integer> ar3 = new ArrayList<>();
+        ar3.add(7);
+        ar3.add(8);
+        ar3.add(9);
+        ar3.add(10);
+
+    }
+}
