@@ -1,0 +1,16 @@
+# 1 Lista vacía
+ar1 = []
+ar1.append(10)
+ar1.append(20)
+ar1.append(30)
+ar1.append(40)
+
+# 2. Lista con elementos iniciales
+ar2 = [1, 2, 4, 3]
+
+# 3 Lista por repetición
+ar3 = [0] * 4
+ar3[0] = 7
+ar3[1] = 8
+ar3[2] = 9
+ar3[3] = 10
