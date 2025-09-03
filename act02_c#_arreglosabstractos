@@ -1,0 +1,74 @@
+//arreglo abstracto de pila
+
+using System;
+using System.Collections.Generic; //crear arreglo
+
+class Program
+{
+    static void Main()
+    {
+        Stack<int> pila = new Stack<int>();
+        pila.Push(10); //agregar
+        pila.Push(20);
+        Console.WriteLine(pila.Pop()); // Quita y muestra 20
+    }
+}
+
+//La pila sigue LIFO (Lo ultimo que entra, primero sale)
+//Push: agrega
+//pop: quita el ultimo elemento
+
+
+
+
+
+//Arreglo abstracto de cola
+
+using System;
+using System.Collections.Generic; //
+
+class Program
+{
+    static void Main()
+    {
+        Queue<string> cola = new Queue<string>();
+        cola.Enqueue("Ana");
+        cola.Enqueue("Luis");
+        Console.WriteLine(cola.Dequeue()); // Muestra "Ana"
+    }
+}
+
+//Este al reves de la pila usa FIFO (primero que entra, primero que sale)
+//Enqueue: agrega al final
+//Deuqueue: quita del inicio 
+
+
+
+
+
+//Lista dinamica
+
+using System;
+using System.Collections.Generic; // ⚠ Necesario para List
+
+class Program
+{
+    static void Main()
+    {
+        List<float> calificaciones = new List<float>();
+        calificaciones.Add(9.5f);
+        calificaciones.Add(8.7f);
+        Console.WriteLine(calificaciones[0]); // Muestra 9.5
+    }
+}
+
+//Crece y disminuye su tamaño
+//add: agregar al final
+
+
+
+
+
+
+
+
