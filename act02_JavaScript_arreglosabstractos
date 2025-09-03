@@ -1,0 +1,52 @@
+//areglo abstracto en pila
+
+let pila = [];
+pila.push(10); // agregar
+pila.push(20);
+console.log(pila.pop()); // 20
+console.log(pila[pila.length - 1]); // 10 (mirar el último)
+
+//push: agregar al final
+//pop: quitar el final
+
+
+
+
+
+
+
+
+//arreglo abstracto en cola
+
+let cola = [];
+cola.push("Ana"); // agregar al final
+cola.push("Luis");
+console.log(cola.shift()); // "Ana" (quitar del inicio)
+console.log(cola[0]);      // "Luis" (mirar el primer elemento
+
+//shift: quita el inicio
+
+
+
+
+
+
+
+
+//Lista dinaica
+
+let calificaciones = [];
+calificaciones.push(9.5);
+calificaciones.push(8.7);
+console.log(calificaciones[0]); // 9.5
+
+//splice: elimina un elemento en una posicion
+//tamaño dinamico automaticamente
+
+
+
+
+
+
+
+
