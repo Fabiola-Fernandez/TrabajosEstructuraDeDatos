@@ -1,0 +1,56 @@
+//Python no tiene un pila o cola como en los otros lengaes pero se puede usar de esta manera
+
+//arreglo abstracto 'pila'
+
+pila = []
+pila.append(10)  # agregar
+pila.append(20)
+print(pila.pop())  # 20
+print(pila[-1])    # 10 (ver último elemento)
+
+//append: agregar al final
+//po: quitar el final
+
+
+
+
+
+
+
+
+//Areglo abstracto 'cola'
+
+from collections import deque
+
+cola = deque()
+cola.append("Ana")   # agregar al final
+cola.append("Luis")
+print(cola.popleft()) # "Ana" (quitar del frente)
+print(cola[0])        # "Luis" (ver primer elemento
+
+//append:agregar al final 
+//popleft: quitar el inicio
+
+
+
+
+
+
+
+
+
+//Lista dinamica
+
+calificaciones = []
+calificaciones.append(9.5)
+calificaciones.append(8.7)
+print(calificaciones[0])  # 9.5
+
+//remove: eliminar un valor especifico 
+
+
+
+
+
+
+
