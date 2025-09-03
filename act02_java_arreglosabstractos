@@ -1,0 +1,74 @@
+//arreglos abstractos de pila
+
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Stack<Integer> pila = new Stack<>();
+        pila.push(10); // agregar
+        pila.push(20);
+        System.out.println(pila.pop()); // 20
+        System.out.println(pila.peek()); // 10
+    }
+}
+
+//push: agregar
+//pop: quitar
+//peek: ver el ultimo elemento
+
+
+
+
+
+
+
+
+//arreglos abstractos en cola
+
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        Queue<String> cola = new LinkedList<>();
+        cola.add("Ana"); // Enqueue
+        cola.add("Luis");
+        System.out.println(cola.remove()); // "Ana"
+        System.out.println(cola.peek());   // "Luis"
+    }
+}
+
+//add: agregar al final
+//remove: quitar elo primero
+//peek: ver el primer elemento
+
+
+
+
+
+
+
+
+//Lista dinamica 
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Float> calificaciones = new ArrayList<>();
+        calificaciones.add(9.5f);
+        calificaciones.add(8.7f);
+        System.out.println(calificaciones.get(0)); // 9.5
+    }
+}
+
+//add: agregar al final
+//get: acceder por indice
+//size: numero de elementos
+
+
+
+
+
+
+
