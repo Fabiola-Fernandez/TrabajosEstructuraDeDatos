@@ -1,0 +1,64 @@
+//Arreglo abstracto de pila
+
+#include <iostream>
+#include <stack> // para std::stack
+
+int main() {
+    std::stack<int> pila;
+    pila.push(10); // agregar
+    pila.push(20);
+    std::cout << pila.top() << std::endl; // 20
+    pila.pop(); // quitar el 20
+    std::cout << pila.top() << std::endl; // 10
+}
+
+//Push: agrega
+//Pop: quita
+//top: mira el elemento mayor
+
+
+
+
+
+
+
+//Arreglo abstracto de cola
+
+#include <iostream>
+#include <queue> // para std::queue
+
+int main() {
+    std::queue<std::string> cola;
+    cola.push("Ana"); // Enqueue
+    cola.push("Luis");
+    std::cout << cola.front() << std::endl; // "Ana"
+    cola.pop(); // Dequeue
+    std::cout << cola.front() << std::endl; // "Luis"
+}
+
+//Push agrega al final
+//quita al frente
+//front: ve el primer elemento
+
+
+
+
+
+
+
+//Lista dinamica (vector)
+
+#include <iostream>
+#include <vector> // para std::vector
+
+int main() {
+    std::vector<float> calificaciones;
+    calificaciones.push_back(9.5);
+    calificaciones.push_back(8.7);
+    std::cout << calificaciones[0] << std::endl; // 9.5
+}
+
+//push_back: agregar al final
+//size(): elementos que haya
+
+
