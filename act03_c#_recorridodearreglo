@@ -1,0 +1,30 @@
+
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Declaramos un arreglo 
+        int[] numeros = { 10, 20, 30, 40, 50 };
+
+        Console.WriteLine("Recorrido del arreglo:");
+
+        // ciclo for
+        for (int i = 0; i < numeros.Length; i++)
+        {
+            Console.WriteLine("Elemento en la posición " + i + ": " + numeros[i]);
+        }
+
+        // foreach aquí se recorre directamente el valor si necesidad de indice 
+        Console.WriteLine("\nRecorrido con foreach:");
+        foreach (int valor in numeros)
+        {
+            Console.WriteLine("Valor: " + valor);
+        }
+    }
+}
+
+
+
