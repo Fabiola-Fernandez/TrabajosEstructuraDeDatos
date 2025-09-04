@@ -1,0 +1,13 @@
+// Declarar un arreglo
+let numeros = [10, 20, 30, 40, 50];
+
+console.log("Recorrido con for:");
+for (let i = 0; i < numeros.length; i++) {
+    console.log("Elemento en la posición " + i + ": " + numeros[i]);
+}
+
+
+console.log("\nRecorrido con for...of:");
+for (let valor of numeros) {
+    console.log("Valor: " + valor);
+}
