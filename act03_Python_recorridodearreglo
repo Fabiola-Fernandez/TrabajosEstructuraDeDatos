@@ -1,0 +1,10 @@
+# Declarar una lista 
+numeros = [10, 20, 30, 40, 50]
+
+print("Recorrido con for (índice):")
+for i in range(len(numeros)):
+    print("Elemento en la posición", i, ":", numeros[i])
+
+print("\nRecorrido directo con for:")
+for valor in numeros:
+    print("Valor:", valor)
