@@ -1,0 +1,8 @@
+let numeros = [1, 2, 3, 4];
+
+console.log("Arreglo original:", numeros);
+
+// Insertamos 22 
+numeros.splice(2, 0, 22);
+
+console.log("Arreglo después:", numeros);
