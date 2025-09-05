@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+
+class Program {
+    static void Main() {
+        // vamos a usar una lista 
+        List<int> numeros = new List<int>() { 1, 2, 3, 4 };
+
+        Console.WriteLine("Lista original:");
+        foreach (int n in numeros) Console.Write(n + " ");
+
+        // Insertamos el valor 22 en la posición 2
+        numeros.Insert(2, 22);
+
+        Console.WriteLine("\nLista después de insertar:");
+        foreach (int n in numeros) Console.Write(n + " ");
+    }
+}
