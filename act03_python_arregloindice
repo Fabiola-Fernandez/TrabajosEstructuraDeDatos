@@ -1,0 +1,9 @@
+# Lista inicial
+numeros = [1, 2, 3, 4]
+
+print("Lista original:", numeros)
+
+# Insertamos
+numeros.insert(2, 22)
+
+print("Lista después:", numeros)
