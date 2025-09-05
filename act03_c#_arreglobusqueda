@@ -1,0 +1,21 @@
+using System;
+
+class Program {
+    static void Main() {
+        int[] numeros = { 100, 200, 300, 400, 500 };
+        int buscar = 300;
+        bool encontrado = false;
+
+        for (int i = 0; i < numeros.Length; i++) {
+            if (numeros[i] == buscar) {
+                Console.WriteLine("Numero " + buscar + " encontrado en la posición: " + i);
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            Console.WriteLine("Numero no encontrado.");
+        }
+    }
+}
