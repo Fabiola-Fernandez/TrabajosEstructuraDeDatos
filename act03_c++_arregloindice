@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> numeros = {1, 2, 3, 4};
+
+    cout << "Lista original: ";
+    for (int n : numeros) cout << n << " ";
+
+    // Insertamos el valor 22
+    numeros.insert(numeros.begin() + 2, 22);
+
+    cout << "\nLista después: ";
+    for (int n : numeros) cout << n << " ";
+
+    return 0;
+}
