@@ -1,0 +1,18 @@
+// Arreglo de números
+let numeros = [100, 200, 300, 400, 500];
+
+// Número que vamos a buscar
+let buscar = 300;
+
+
+let encontrado = false;
+for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] === buscar) {
+        console.log("Número encontrado en la posición:", i);
+        encontrado = true;
+        break;
+    }
+}
+if (!encontrado) {
+    console.log("Número no encontrado");
+}
