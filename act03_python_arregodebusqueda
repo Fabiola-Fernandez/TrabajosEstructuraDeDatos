@@ -1,0 +1,15 @@
+#números
+numeros = [100, 200, 300, 400, 500]
+
+# Número que vamos a buscar
+buscar = 300
+
+
+encontrado = False
+for i in range(len(numeros)):
+    if numeros[i] == buscar:
+        print("Número encontrado en la posición:", i)
+        encontrado = True
+        break
+if not encontrado:
+    print("Número no encontrado")
