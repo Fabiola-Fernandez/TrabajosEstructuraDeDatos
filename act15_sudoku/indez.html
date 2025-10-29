@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sudoku by Fabiola</title>
+
+  <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+  
+    .sudoku-board {
+      display: grid;
+      grid-template-columns: repeat(9, 40px);
+      grid-template-rows: repeat(9, 40px);
+      gap: 2px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 38px;
+      height: 38px;
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid #ccc;
+    }
+
+    .info {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    /* casillas que van a tener numero fijo */
+    .bloqueado {
+      background: #d9ffd9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sudoku 🎮</h1>
+
+  <!-- lo que va a mostrar en web -->
+  <div class="info">
+    <p><b>Dificultad:</b> <span id="nivel">Muy fácil</span></p>
+    <p><b>Subnivel:</b> <span id="subnivel">1</span> / 5</p>
+    <p><b>Vidas:</b> <span id="vidas">3</span></p>
+    <p><b>Tiempo:</b> <span id="tiempo">0</span> s</p>
+  </div>
+
+  
+  <div class="sudoku-board" id="tablero"></div>
+
+  <!-- botones que se mostraran -->
+  <div>
+    <button onclick="verificarSudoku()">Verificar</button>
+    <button onclick="reiniciarJuego()">Reiniciar</button>
+    <button onclick="cambiarNivel()">Cambiar Nivel</button>
+  </div>
+
+  <script>
+   
+    let tablero = document.getElementById('tablero'); 
+    let vidas = 3;              
+    let tiempo = 0;             
+    let timer;                  
+    let niveles = ["Muy fácil", "Fácil", "Medio", "Difícil", "Muy difícil"];
+    let nivelActual = 0;        
+    let subnivelActual = 1;     
+
+    /* el tipo de numero que se mostraran dependinendo del nivel que estes jugando de sudoku */
+    const numerosPorNivel = {
+      0: [36, 49],
+      1: [32, 35],
+      2: [28, 31],
+      3: [24, 27],
+      4: [17, 23]
+    };
+
+    /**
+     * para ver si se puede colocar un numero respetando las reglas del sudoku
+     */
+    function esValido(grid, fila, col, num) {
+      // verifica la fila y columna
+      for (let x = 0; x < 9; x++) {
+        if (grid[fila][x] === num || grid[x][col] === num) return false;
+      }
+
+      
+      const startRow = Math.floor(fila / 3) * 3;
+      const startCol = Math.floor(col / 3) * 3;
+
+      // un for para el 3x3 de casillas
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[startRow + i][startCol + j] === num) return false;
+        }
+      }
+      return true;
+    }
+
+    /**
+     * para verificar si se completo correctamente el sudoku
+     * 
+     */
+    function resolverSudoku(grid) {
+      for (let fila = 0; fila < 9; fila++) {
+        for (let col = 0; col < 9; col++) {
+          if (grid[fila][col] === 0) { 
+            for (let num = 1; num <= 9; num++) {
+              if (esValido(grid, fila, col, num)) {
+                grid[fila][col] = num;
+                if (resolverSudoku(grid)) return true;
+                grid[fila][col] = 0; 
+              }
+            }
+            return false;
+          }
+        }
+      }
+      return true; // Sudoku completado
+    }
+
+    /**
+     * aqui se genera la resolucion del sudoku
+     */
+    function generarSudokuCompleto() {
+      let grid = Array.from({ length: 9 }, () => Array(9).fill(0));
+      llenarDiagonal(grid);   // llena las diagonales con numeros
+      resolverSudoku(grid);  
+      return grid;
+    }
+
+    /**
+     * va llenando las diagonales del tablero
+     */
+    function llenarDiagonal(grid) {
+      for (let i = 0; i < 9; i += 3) {
+        llenarSubcuadro(grid, i, i);
+      }
+    }
+
+    /**
+     * va llenando de numero aleatorios del 1 al 9 pero poer casilla de 3x3
+     */
+    function llenarSubcuadro(grid, fila, col) {
+      let numeros = [1,2,3,4,5,6,7,8,9].sort(() => Math.random() - 0.5);
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          grid[fila + i][col + j] = numeros.pop();
+        }
+      }
+    }
+
+    /**
+     * para verificar el tablero
+     */
+    function copiarGrid(grid) {
+      return grid.map(fila => fila.slice());
+    }
+
+    /**
+     * para garantizar que solo sea una sola solucion del sudoku
+     */
+    function contarSoluciones(grid) {
+      let soluciones = 0;
+
+      function resolverContando() {
+        for (let fila = 0; fila < 9; fila++) {
+          for (let col = 0; col < 9; col++) {
+            if (grid[fila][col] === 0) {
+              for (let num = 1; num <= 9; num++) {
+                if (esValido(grid, fila, col, num)) {
+                  grid[fila][col] = num;
+                  resolverContando();
+                  grid[fila][col] = 0;
+                }
+              }
+              return;
+            }
+          }
+        }
+        soluciones++;
+      }
+
+      resolverContando();
+      return soluciones;
+    }
+
+    /**
+     para que solo haya un solucion posible 
+     */
+    function generarSudokuSegunNivel() {
+      let completo = generarSudokuCompleto();  // resulucion del tablero 
+      let puzzle = copiarGrid(completo);
+
+      // para ver cuantos numero se tienen que poner depende del nivel
+      const min = numerosPorNivel[nivelActual][0];
+      const max = numerosPorNivel[nivelActual][1];
+      const pistas = Math.floor(Math.random() * (max - min + 1)) + min;
+      let celdasAQuitar = 81 - pistas;
+
+      // Eliminar números asegurando unicidad
+      while (celdasAQuitar > 0) {
+        let fila = Math.floor(Math.random() * 9);
+        let col = Math.floor(Math.random() * 9);
+        if (puzzle[fila][col] === 0) continue;
+
+        let backup = puzzle[fila][col];
+        puzzle[fila][col] = 0;
+
+        let copia = copiarGrid(puzzle);
+        if (contarSoluciones(copia) !== 1) {
+          // por si hay mas de una solucion
+          puzzle[fila][col] = backup;
+        } else {
+          celdasAQuitar--;
+        }
+      }
+
+      return { puzzle, solucion: completo };
+    }
+    
+    function crearTablero() {
+      tablero.innerHTML = ''; // va limpiando el tablero que se juega
+
+      // un for para crear un tablero de 81 o 9x9
+      for (let i = 0; i < 81; i++) {
+        let input = document.createElement('input');
+        input.type = 'number';
+        input.min = 1;
+        input.max = 9;
+        tablero.appendChild(input);
+      }
+
+      // va generando un nuevo sudoku 
+      const { puzzle } = generarSudokuSegunNivel();
+      const inputs = tablero.querySelectorAll('input');
+
+      // for para llenar las celdas
+      for (let f = 0; f < 9; f++) {
+        for (let c = 0; c < 9; c++) {
+          const index = f * 9 + c;
+          if (puzzle[f][c] !== 0) {
+            // casilla bloqueada por numero predeterminado
+            inputs[index].value = puzzle[f][c];
+            inputs[index].disabled = true;
+            inputs[index].classList.add('bloqueado');
+          } else {
+            // casilla vasia 
+            inputs[index].value = '';
+            inputs[index].disabled = false;
+            inputs[index].classList.remove('bloqueado');
+          }
+        }
+      }
+    }
+
+    /**
+     * Comprueba si el juego que hizo el usuario es correcto
+     */
+    function verificarSudoku() {
+      const inputs = tablero.querySelectorAll('input');
+      let grid = Array.from({ length: 9 }, () => Array(9).fill(0));
+
+      // Va leyendo los valores del tablero
+      for (let f = 0; f < 9; f++) {
+        for (let c = 0; c < 9; c++) {
+          grid[f][c] = parseInt(inputs[f * 9 + c].value) || 0;
+        }
+      }
+
+      // Comprobar si el Sudoku puede resolverse correctamente
+      if (resolverSudoku(copiarGrid(grid))) {
+        alert('Sudoku correcto o resoluble');
+      } else {
+        alert('Sudoku incorrecto');
+      }
+    }
+
+    /**
+     * Reinicia el juego 
+     */
+    function reiniciarJuego() {
+      crearTablero();
+      tiempo = 0;
+      document.getElementById('nivel').textContent = niveles[nivelActual];
+      document.getElementById('subnivel').textContent = subnivelActual;
+      document.getElementById('vidas').textContent = vidas;
+      document.getElementById('tiempo').textContent = tiempo;
+
+      // Reiniciar el temporizador
+      clearInterval(timer);
+      timer = setInterval(() => {
+        tiempo++;
+        document.getElementById('tiempo').textContent = tiempo;
+      }, 1000);
+    }
+
+    /**
+     * Para cambiar el nivel e iniciar el juego
+     */
+    function cambiarNivel() {
+      nivelActual = (nivelActual + 1) % niveles.length; // Va cambiando en bucle el nivel
+      subnivelActual = 1;
+      vidas = 3;
+      reiniciarJuego();
+    }
+
+    /* 
+       INICIO DEL JUEGO AUTOMÁTICO AL CARGAR LA PÁGINA
+    */
+    crearTablero();
+    reiniciarJuego();
+
+  </script>
+
+</body>
+</html>
