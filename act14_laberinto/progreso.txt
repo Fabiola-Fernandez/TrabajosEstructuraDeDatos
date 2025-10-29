@@ -1,0 +1,3 @@
+Jugador en: 6,2
+Nivel: 1
+Vidas: 3
