@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparación de Métodos de Ordenamiento</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f7f7f7;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+      justify-items: center;
+    }
+    .chart-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      width: 340px;
+    }
+    .chart-box h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    canvas {
+      width: 100% !important;
+      height: 200px !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Comparación de Métodos de Ordenamiento</h1>
+  <button onclick="startTest()">Iniciar comparación</button>
+  <div id="charts"></div>
+
+  <script>
+    const sizes = [100, 1000, 10000, 100000];
+
+    // Generar arreglo aleatorio
+    function generateArray(size) {
+      return Array.from({ length: size }, () => Math.floor(Math.random() * 100000));
+    }
+
+    // ===== MÉTODOS DE ORDENAMIENTO =====
+    function bubbleSort(a) {
+      a = [...a];
+      for (let i = 0; i < a.length; i++)
+        for (let j = 0; j < a.length - i - 1; j++)
+          if (a[j] > a[j + 1]) [a[j], a[j + 1]] = [a[j + 1], a[j]];
+      return a;
+    }
+
+    function insertionSort(a) {
+      a = [...a];
+      for (let i = 1; i < a.length; i++) {
+        let key = a[i], j = i - 1;
+        while (j >= 0 && a[j] > key) a[j + 1] = a[j--];
+        a[j + 1] = key;
+      }
+      return a;
+    }
+
+    function selectionSort(a) {
+      a = [...a];
+      for (let i = 0; i < a.length; i++) {
+        let min = i;
+        for (let j = i + 1; j < a.length; j++)
+          if (a[j] < a[min]) min = j;
+        [a[i], a[min]] = [a[min], a[i]];
+      }
+      return a;
+    }
+
+    function mergeSort(a) {
+      if (a.length <= 1) return a;
+      const mid = Math.floor(a.length / 2);
+      const left = mergeSort(a.slice(0, mid));
+      const right = mergeSort(a.slice(mid));
+      return merge(left, right);
+    }
+    function merge(left, right) {
+      let res = [], i = 0, j = 0;
+      while (i < left.length && j < right.length)
+        res.push(left[i] < right[j] ? left[i++] : right[j++]);
+      return res.concat(left.slice(i)).concat(right.slice(j));
+    }
+
+    function quickSort(a) {
+      if (a.length <= 1) return a;
+      const pivot = a[a.length - 1];
+      const left = a.filter(x => x < pivot);
+      const right = a.filter(x => x > pivot);
+      const equal = a.filter(x => x === pivot);
+      return [...quickSort(left), ...equal, ...quickSort(right)];
+    }
+
+    function heapSort(a) {
+      a = [...a];
+      const n = a.length;
+      for (let i = Math.floor(n / 2) - 1; i >= 0; i--) heapify(a, n, i);
+      for (let i = n - 1; i > 0; i--) {
+        [a[0], a[i]] = [a[i], a[0]];
+        heapify(a, i, 0);
+      }
+      return a;
+    }
+    function heapify(a, n, i) {
+      let largest = i, l = 2 * i + 1, r = 2 * i + 2;
+      if (l < n && a[l] > a[largest]) largest = l;
+      if (r < n && a[r] > a[largest]) largest = r;
+      if (largest !== i) {
+        [a[i], a[largest]] = [a[largest], a[i]];
+        heapify(a, n, largest);
+      }
+    }
+
+    function radixSort(a) {
+      a = [...a];
+      const max = Math.max(...a);
+      let exp = 1;
+      while (Math.floor(max / exp) > 0) {
+        countingSort(a, exp);
+        exp *= 10;
+      }
+      return a;
+    }
+    function countingSort(a, exp) {
+      let output = new Array(a.length).fill(0);
+      let count = new Array(10).fill(0);
+      for (let i = 0; i < a.length; i++)
+        count[Math.floor(a[i] / exp) % 10]++;
+      for (let i = 1; i < 10; i++) count[i] += count[i - 1];
+      for (let i = a.length - 1; i >= 0; i--) {
+        let idx = Math.floor(a[i] / exp) % 10;
+        output[--count[idx]] = a[i];
+      }
+      for (let i = 0; i < a.length; i++) a[i] = output[i];
+    }
+
+    function bucketSort(a) {
+      const buckets = Array.from({ length: 10 }, () => []);
+      const max = Math.max(...a);
+      for (const n of a) buckets[Math.floor((n / (max + 1)) * 10)].push(n);
+      for (const b of buckets) insertionSort(b);
+      return buckets.flat();
+    }
+
+    function hashSort(a) {
+      return a.sort((x, y) => x - y);
+    }
+
+    // ===== APOYO =====
+    function formatTime(ms) {
+      let totalSeconds = ms / 1000;
+      let hours = Math.floor(totalSeconds / 3600);
+      let minutes = Math.floor((totalSeconds % 3600) / 60);
+      let seconds = (totalSeconds % 60).toFixed(3);
+      return `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.padStart(6,'0')}`;
+    }
+
+    async function startTest() {
+      const algorithms = {
+        "Burbuja": bubbleSort,
+        "Inserción": insertionSort,
+        "Selección": selectionSort,
+        "Merge Sort": mergeSort,
+        "Quick Sort": quickSort,
+        "Heap Sort": heapSort,
+        "Radix Sort": radixSort,
+        "Bucket Sort": bucketSort,
+        "Hash Sort": hashSort
+      };
+
+      const container = document.getElementById("charts");
+      container.innerHTML = "<b>Ejecutando pruebas...</b>";
+
+      // Espera un momento para actualizar el DOM
+      await new Promise(r => setTimeout(r, 100));
+
+      container.innerHTML = "";
+
+      for (const [name, func] of Object.entries(algorithms)) {
+        let times = [];
+
+        for (const n of sizes) {
+          const arr = generateArray(n);
+          const start = performance.now();
+          func(arr);
+          const end = performance.now();
+          times.push(end - start);
+        }
+
+        // Crear gráfico individual
+        const div = document.createElement("div");
+        div.className = "chart-box";
+        div.innerHTML = `<h3>${name}</h3><canvas id="chart-${name.replace(/\s/g, '')}"></canvas>`;
+        container.appendChild(div);
+
+        const ctx = div.querySelector("canvas").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: sizes.map(s => `N=${s}`),
+            datasets: [{
+              label: "Tiempo (ms)",
+              data: times,
+              backgroundColor: "#007bff"
+            }]
+          },
+          options: {
+            scales: { y: { beginAtZero: true } },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: ctx => `${formatTime(ctx.parsed.y)} (${ctx.parsed.y.toFixed(2)} ms)`
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>l>
