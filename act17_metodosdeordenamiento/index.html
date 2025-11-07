@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Comparación de Métodos de Ordenamiento</title>
+
+  <!-- creamos un libreria para graficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
+    /* estilo de la pagina */
     body {
       font-family: "Segoe UI", sans-serif;
       background: #f7f7f7;
       text-align: center;
       padding: 30px;
     }
+
     h1 {
       color: #333;
     }
+
+    /* el boton para el inicio */
     button {
       background: #007bff;
       color: white;
@@ -24,9 +31,12 @@
       font-size: 16px;
       margin-bottom: 30px;
     }
+
     button:hover {
       background: #0056b3;
     }
+
+    /* para los graficos */
     #charts {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -34,6 +44,8 @@
       margin-top: 30px;
       justify-items: center;
     }
+
+    /* apartado para cada grafico */
     .chart-box {
       background: white;
       border-radius: 12px;
@@ -41,31 +53,43 @@
       padding: 15px;
       width: 340px;
     }
+
     .chart-box h3 {
       margin: 0;
       font-size: 18px;
       color: #333;
     }
+
+    /* el tamaño por grafico */
     canvas {
       width: 100% !important;
       height: 200px !important;
     }
   </style>
 </head>
+
 <body>
+  <!-- el titulo -->
   <h1>Comparación de Métodos de Ordenamiento</h1>
+
+  <!-- boton para las pruebas-->
   <button onclick="startTest()">Iniciar comparación</button>
+
+  <!-- aquí se agregan graficos-->
   <div id="charts"></div>
 
   <script>
+
+    // tamaños de los arreglos que se van a probar
     const sizes = [100, 1000, 10000, 100000];
 
-    // Generar arreglo aleatorio
+    // función para generar un arreglo aleatorio de números
     function generateArray(size) {
       return Array.from({ length: size }, () => Math.floor(Math.random() * 100000));
     }
 
-    // ===== MÉTODOS DE ORDENAMIENTO =====
+
+    // ordenamiento Burbuja
     function bubbleSort(a) {
       a = [...a];
       for (let i = 0; i < a.length; i++)
@@ -74,6 +98,7 @@
       return a;
     }
 
+    // ordenamiento por Inserción
     function insertionSort(a) {
       a = [...a];
       for (let i = 1; i < a.length; i++) {
@@ -84,6 +109,7 @@
       return a;
     }
 
+    // ordenamiento por Selección
     function selectionSort(a) {
       a = [...a];
       for (let i = 0; i < a.length; i++) {
@@ -95,6 +121,7 @@
       return a;
     }
 
+    // merge Sort 
     function mergeSort(a) {
       if (a.length <= 1) return a;
       const mid = Math.floor(a.length / 2);
@@ -102,6 +129,8 @@
       const right = mergeSort(a.slice(mid));
       return merge(left, right);
     }
+
+    // Función auxiliar para fusionar dos subarreglos ordenados
     function merge(left, right) {
       let res = [], i = 0, j = 0;
       while (i < left.length && j < right.length)
@@ -109,6 +138,7 @@
       return res.concat(left.slice(i)).concat(right.slice(j));
     }
 
+    // quick Sort
     function quickSort(a) {
       if (a.length <= 1) return a;
       const pivot = a[a.length - 1];
@@ -118,16 +148,21 @@
       return [...quickSort(left), ...equal, ...quickSort(right)];
     }
 
+    // heap Sort
     function heapSort(a) {
       a = [...a];
       const n = a.length;
+      // construye el heap
       for (let i = Math.floor(n / 2) - 1; i >= 0; i--) heapify(a, n, i);
+
       for (let i = n - 1; i > 0; i--) {
         [a[0], a[i]] = [a[i], a[0]];
         heapify(a, i, 0);
       }
       return a;
     }
+
+    // Función auxiliar para mantener la propiedad de heap
     function heapify(a, n, i) {
       let largest = i, l = 2 * i + 1, r = 2 * i + 2;
       if (l < n && a[l] > a[largest]) largest = l;
@@ -138,6 +173,7 @@
       }
     }
 
+    // radix Sort
     function radixSort(a) {
       a = [...a];
       const max = Math.max(...a);
@@ -148,6 +184,8 @@
       }
       return a;
     }
+
+    // counting Sort usado por radix Sort
     function countingSort(a, exp) {
       let output = new Array(a.length).fill(0);
       let count = new Array(10).fill(0);
@@ -161,6 +199,7 @@
       for (let i = 0; i < a.length; i++) a[i] = output[i];
     }
 
+    // bucket Sort
     function bucketSort(a) {
       const buckets = Array.from({ length: 10 }, () => []);
       const max = Math.max(...a);
@@ -169,11 +208,14 @@
       return buckets.flat();
     }
 
+    // hash Sort 
     function hashSort(a) {
       return a.sort((x, y) => x - y);
     }
 
-    // ===== APOYO =====
+    /* funcion para el tiempo */
+
+    // Convierte milisegundos a formato de horas 
     function formatTime(ms) {
       let totalSeconds = ms / 1000;
       let hours = Math.floor(totalSeconds / 3600);
@@ -182,7 +224,9 @@
       return `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.padStart(6,'0')}`;
     }
 
+
     async function startTest() {
+      // lista de algoritmos a comparar
       const algorithms = {
         "Burbuja": bubbleSort,
         "Inserción": insertionSort,
@@ -196,30 +240,35 @@
       };
 
       const container = document.getElementById("charts");
+
+      // mensaje para cuando se van analizando las pruebas
       container.innerHTML = "<b>Ejecutando pruebas...</b>";
 
-      // Espera un momento para actualizar el DOM
       await new Promise(r => setTimeout(r, 100));
 
+      // limpia
       container.innerHTML = "";
 
+      // recorrer cada algoritmo y medir tiempos
       for (const [name, func] of Object.entries(algorithms)) {
         let times = [];
 
+        // ejecutar con distintos tamaños del arreglo
         for (const n of sizes) {
           const arr = generateArray(n);
-          const start = performance.now();
-          func(arr);
-          const end = performance.now();
-          times.push(end - start);
+          const start = performance.now();  
+          func(arr);                         // ejecuta el algoritmo
+          const end = performance.now();     
+          times.push(end - start);           // guarda el tiempo
         }
 
-        // Crear gráfico individual
+        // crea los graficos
         const div = document.createElement("div");
         div.className = "chart-box";
         div.innerHTML = `<h3>${name}</h3><canvas id="chart-${name.replace(/\s/g, '')}"></canvas>`;
         container.appendChild(div);
 
+        // crear graficos con Chart.js
         const ctx = div.querySelector("canvas").getContext("2d");
         new Chart(ctx, {
           type: "bar",
@@ -246,4 +295,4 @@
     }
   </script>
 </body>
-</html>l>
+</html>
