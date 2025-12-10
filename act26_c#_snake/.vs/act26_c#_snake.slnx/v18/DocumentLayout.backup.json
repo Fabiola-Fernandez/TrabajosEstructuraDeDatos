@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\felix\\OneDrive\\Desktop\\EstructuraDeDatos\\act26_c#_snake\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AA08C0B7-DFF1-733F-B176-268074C18157}|act26_c#_snake\\act26_c#_snake.csproj|c:\\users\\felix\\onedrive\\desktop\\estructuradedatos\\act26_c#_snake\\act26_c#_snake\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA08C0B7-DFF1-733F-B176-268074C18157}|act26_c#_snake\\act26_c#_snake.csproj|solutionrelative:act26_c#_snake\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\felix\\OneDrive\\Desktop\\EstructuraDeDatos\\act26_c#_snake\\act26_c#_snake\\Program.cs",
+              "RelativeDocumentMoniker": "act26_c#_snake\\Program.cs",
+              "ToolTip": "C:\\Users\\felix\\OneDrive\\Desktop\\EstructuraDeDatos\\act26_c#_snake\\act26_c#_snake\\Program.cs*",
+              "RelativeToolTip": "act26_c#_snake\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T03:48:36.605Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

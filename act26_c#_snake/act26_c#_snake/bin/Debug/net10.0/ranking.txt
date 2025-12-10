@@ -1,0 +1,14 @@
+Fabiola;2
+Erika;4
+Fabian;0
+Fabio,0
+Mario;0
+Erika;2
+Alan;1
+Fabian;1
+maria;0
+Mario;1
+fabian;0
+Fabiola;0
+mario;2
+Fabiola;4

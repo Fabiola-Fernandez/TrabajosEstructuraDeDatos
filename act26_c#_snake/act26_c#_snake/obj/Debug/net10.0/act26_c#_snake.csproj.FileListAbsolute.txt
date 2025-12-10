@@ -1,0 +1,14 @@
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\bin\Debug\net10.0\act26_c#_snake.exe
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\bin\Debug\net10.0\act26_c#_snake.deps.json
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\bin\Debug\net10.0\act26_c#_snake.runtimeconfig.json
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\bin\Debug\net10.0\act26_c#_snake.dll
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\bin\Debug\net10.0\act26_c#_snake.pdb
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.AssemblyInfoInputs.cache
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.AssemblyInfo.cs
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.csproj.CoreCompileInputs.cache
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.dll
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\refint\act26_c#_snake.dll
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.pdb
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\act26_c#_snake.genruntimeconfig.cache
+C:\Users\felix\OneDrive\Desktop\EstructuraDeDatos\act26_c#_snake\act26_c#_snake\obj\Debug\net10.0\ref\act26_c#_snake.dll
