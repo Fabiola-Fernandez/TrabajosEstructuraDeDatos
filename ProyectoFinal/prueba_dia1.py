@@ -1,28 +1,25 @@
 import json
 from modelo import Nodo
 
-# 1. Creamos la Raíz (Root)
+# crear la raiz
 raiz = Nodo("root", "carpeta")
 
-# 2. Creamos carpetas y archivos hijos
+# creamos las carpetas y los archivos hijs
 carpeta_docs = Nodo("documentos", "carpeta")
 archivo_notas = Nodo("notas.txt", "archivo", contenido="Hola mundo")
 archivo_foto = Nodo("foto.png", "archivo", contenido="[binary data]")
 
-# 3. Estructuramos el árbol (manual por hoy)
-# root -> documentos
+# hacemos el arbol nosotros por ahora
 raiz.agregar_hijo(carpeta_docs)
 
-# root -> documentos -> notas.txt
 carpeta_docs.agregar_hijo(archivo_notas)
 
-# root -> foto.png
 raiz.agregar_hijo(archivo_foto)
 
-# 4. Imprimimos el resultado como se vería en el JSON final
+# imprimimos el JSON
 json_output = json.dumps(raiz.to_dict(), indent=4)
 
-print("--- Estructura del Árbol (Visual) ---")
+print("Estructura del Árbol")
 print(f"Raíz: {raiz.nombre}")
 print(f"  └── {carpeta_docs.nombre}")
 print(f"      └── {archivo_notas.nombre}")
