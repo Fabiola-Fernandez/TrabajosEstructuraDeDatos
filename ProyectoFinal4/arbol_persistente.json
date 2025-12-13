@@ -1,0 +1,30 @@
+{
+    "id": "7f439716-4826-4312-a66f-484d29afe83c",
+    "nombre": "root",
+    "tipo": "carpeta",
+    "contenido": "",
+    "hijos": [
+        {
+            "id": "1eba2f30-6380-4f49-b25d-518f5de5c3ce",
+            "nombre": "mis_documentos",
+            "tipo": "carpeta",
+            "contenido": "",
+            "hijos": [
+                {
+                    "id": "ae87fda5-1be7-44cf-bebb-5112536898ba",
+                    "nombre": "notas.txt",
+                    "tipo": "archivo",
+                    "contenido": "Hola",
+                    "hijos": []
+                },
+                {
+                    "id": "cce0fd71-865a-4d9d-b7ae-3a8491ed1240",
+                    "nombre": "logs",
+                    "tipo": "carpeta",
+                    "contenido": "",
+                    "hijos": []
+                }
+            ]
+        }
+    ]
+}
