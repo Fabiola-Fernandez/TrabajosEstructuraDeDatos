@@ -1,0 +1,22 @@
+{
+    "id": "ecbcf3e3-c805-4d40-b267-bc3ab3e5c7a9",
+    "nombre": "root",
+    "tipo": "carpeta",
+    "contenido": "",
+    "hijos": [
+        {
+            "id": "301ae118-1da0-4990-8f98-07bb23756421",
+            "nombre": "escuela",
+            "tipo": "carpeta",
+            "contenido": "",
+            "hijos": []
+        },
+        {
+            "id": "01fcf9a5-71c7-4eee-984c-167f066e1634",
+            "nombre": "fotos",
+            "tipo": "carpeta",
+            "contenido": "",
+            "hijos": []
+        }
+    ]
+}
