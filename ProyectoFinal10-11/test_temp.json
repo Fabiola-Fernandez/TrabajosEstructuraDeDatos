@@ -1,0 +1,23 @@
+{
+    "id": "b5872645-5110-4cd9-9938-7888cd805669",
+    "nombre": "root",
+    "tipo": "carpeta",
+    "contenido": "",
+    "hijos": [
+        {
+            "id": "0e3a7552-6eff-4295-9dd3-1d74e131f225",
+            "nombre": "documentos",
+            "tipo": "carpeta",
+            "contenido": "",
+            "hijos": [
+                {
+                    "id": "630f00b4-c724-4aa1-98e7-98ac4e294a36",
+                    "nombre": "tarea.txt",
+                    "tipo": "archivo",
+                    "contenido": "",
+                    "hijos": []
+                }
+            ]
+        }
+    ]
+}
